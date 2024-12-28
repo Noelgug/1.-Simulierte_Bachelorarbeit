@@ -6,13 +6,12 @@ project_root = os.path.dirname(os.path.abspath(__file__))
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-from data_loader import (load_cleaned_data, 
-                                  load_data, 
-                                  load_test_data, 
-                                  load_train_data)
+from data_loader import (load_data, 
+                        load_test_data, 
+                        load_train_data)
 from descriptive_analysis import run_descriptive_analysis
-from data_Files.data_cleaning import clean_data
-from data_Files.data_conversion import (scale_features, 
+from data_cleaning import clean_data
+from data_conversion import (scale_features, 
                                       print_scaling_info, 
                                       perform_one_hot_encoding, 
                                       print_encoding_info,
@@ -24,8 +23,8 @@ from xgboost_model import train_xgboost_model
 from data_management import setup_data_directories
 from outlier_analysis import run_outlier_analysis
 from visualization_runner import (create_all_visualizations, 
-                                             create_model_visualizations,
-                                             plot_roc_curve)
+                                create_model_visualizations,
+                                plot_roc_curve)
 
 
 def process_data(data):
