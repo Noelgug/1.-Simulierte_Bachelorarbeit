@@ -1,0 +1,41 @@
+XGBoost Model Results:
+
+Cross-Validation Scores: [0.81017882 0.8131591  0.82003668 0.8149507  0.81563861]    
+Mean CV Score: 0.8148 (+/- 0.0065)
+Test Accuracy: 0.8150
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.95      0.89      4206
+           1       0.67      0.37      0.48      1247
+
+    accuracy                           0.81      5453
+   macro avg       0.75      0.66      0.68      5453
+weighted avg       0.80      0.81      0.79      5453
+
+
+Confusion Matrix:
+[[3980  226]
+ [ 783  464]]
+
+Top 10 Most Important Features:
+  PAY_0: 0.3009
+  PAY_2: 0.0989
+  PAY_4: 0.0433
+  PAY_3: 0.0333
+  PAY_5: 0.0306
+  PAY_6: 0.0300
+  PAY_AMT3: 0.0219
+  LIMIT_BAL: 0.0184
+  CREDIT_UTILIZATION_RATIO_2: 0.0182
+  BILL_AMT1: 0.0182
+
+Prediction Probabilities:
+[[0.1023733  0.8976267 ]
+ [0.83403695 0.16596308]
+ [0.66106486 0.33893517]
+ ...
+ [0.91798675 0.08201322]
+ [0.9433451  0.05665486]
+ [0.8789191  0.12108089]]

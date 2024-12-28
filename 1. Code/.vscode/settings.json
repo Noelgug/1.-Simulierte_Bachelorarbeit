@@ -1,0 +1,7 @@
+{
+    "python.analysis.extraPaths": [
+        "./visualization",
+        "./data_Files",
+        "./descriptive"
+    ]
+}

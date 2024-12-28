@@ -1,0 +1,89 @@
+XGBoost Cross-Validation Results:
+==================================================
+
+Accuracy Scores:
+Fold 1: 0.8331
+Fold 2: 0.7859
+Fold 3: 0.8152
+Fold 4: 0.8097
+Fold 5: 0.8138
+Fold 6: 0.8189
+Fold 7: 0.8161
+Fold 8: 0.8152
+Fold 9: 0.8000
+Fold 10: 0.8271
+Mean Accuracy: 0.8135 (+/- 0.0251)
+
+AUC Scores:
+Fold 1: 0.7902
+Fold 2: 0.7568
+Fold 3: 0.7595
+Fold 4: 0.7781
+Fold 5: 0.7847
+Fold 6: 0.7865
+Fold 7: 0.7780
+Fold 8: 0.7831
+Fold 9: 0.7616
+Fold 10: 0.7816
+Mean AUC: 0.7760 (+/- 0.0230)
+
+Average Confusion Matrix:
+[[1588   93]
+ [ 313  185]]
+
+Example Classification Report (Last Fold):
+              precision    recall  f1-score   support
+
+           0       0.84      0.95      0.90      1690
+           1       0.71      0.39      0.50       490
+
+    accuracy                           0.83      2180
+   macro avg       0.78      0.67      0.70      2180
+weighted avg       0.81      0.83      0.81      2180
+
+
+XGBoost Model Results:
+==================================================
+
+Cross Validation Scores: [0.80972031 0.81178359 0.82164145 0.81334556 0.81242834]
+Mean CV Score: 0.8138 (+/- 0.0082)
+
+Test Accuracy: 0.8168
+
+Classification report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.95      0.89      4206
+           1       0.68      0.37      0.48      1247
+
+    accuracy                           0.82      5453
+   macro avg       0.76      0.66      0.69      5453
+weighted avg       0.80      0.82      0.80      5453
+
+
+Confusion Matrix:
+[[3988  218]
+ [ 781  466]]
+
+Top 10 Most Important Features:
+ PAY_0: 0.3655
+ PAY_2: 0.1210
+ PAY_4: 0.0367
+ PAY_3: 0.0293
+ PAY_6: 0.0238
+ PAY_5: 0.0228
+ PAY_AMT3: 0.0206
+ LIMIT_BAL: 0.0158
+ CREDIT_UTILIZATION_RATIO_3: 0.0139
+ BILL_AMT1: 0.0139
+
+Prediction probabilities (first 5 samples):
+[[0.1080038  0.8919962 ]
+ [0.86872745 0.13127258]
+ [0.6340791  0.3659209 ]
+ [0.71271324 0.28728676]
+ [0.8543607  0.1456393 ]]
+
+Model Performance:
+Accuracy: 0.8168
+AUC Score: 0.7870
