@@ -1,10 +1,8 @@
-import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import xgboost as xgb
-from sklearn.model_selection import GridSearchCV, cross_val_score, KFold
+from sklearn.model_selection import KFold
 import optuna
 from sklearn.metrics import accuracy_score, roc_auc_score
 from cross_validation import perform_cross_validation, print_cv_results

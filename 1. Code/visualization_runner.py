@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 import optuna.visualization as optv
 import os
 from sklearn.metrics import roc_curve, auc
-import numpy as np
 
 def create_all_visualizations(data):
     """Create all visualizations"""

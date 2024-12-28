@@ -2,7 +2,6 @@ import os
 import shutil
 from config import (
     BASE_DIR,
-    DATA_DIR,
     RAW_DATA_DIR,
     PROCESSED_DATA_DIR,
     CLEANED_DATA_FILE,

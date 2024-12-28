@@ -1,11 +1,12 @@
-import pandas as pd
 import numpy as np
 from descriptive_stats import analyze_bill_amt_outliers_z, analyze_pay_amt_outliers_z
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
-from config import (PROCESSED_DATA_DIR, CLEANED_DATA_FILE, SCALED_DATA_FILE, 
-                   ENCODED_DATA_FILE, FINANCIAL_RATIOS_FILE, 
-                   TEST_DATA_FILE, TRAIN_DATA_FILE)
+from config import (SCALED_DATA_FILE, 
+                   ENCODED_DATA_FILE, 
+                   FINANCIAL_RATIOS_FILE, 
+                   TEST_DATA_FILE, 
+                   TRAIN_DATA_FILE)
 
 def remove_zscore_outliers(data, output_path):
     """
