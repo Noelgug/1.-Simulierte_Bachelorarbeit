@@ -1,0 +1,80 @@
+Random Forest Cross-Validation Results:
+==================================================
+
+Accuracy Scores:
+Fold 1: 0.8096
+Fold 2: 0.8137
+Fold 3: 0.8146
+Fold 4: 0.8229
+Fold 5: 0.8250
+Fold 6: 0.8158
+Fold 7: 0.8237
+Fold 8: 0.8221
+Fold 9: 0.8208
+Fold 10: 0.8200
+Mean Accuracy: 0.8188 (+/- 0.0097)
+
+AUC Scores:
+Fold 1: 0.7847
+Fold 2: 0.7754
+Fold 3: 0.7719
+Fold 4: 0.7912
+Fold 5: 0.7938
+Fold 6: 0.7883
+Fold 7: 0.7797
+Fold 8: 0.7841
+Fold 9: 0.7909
+Fold 10: 0.7892
+Mean AUC: 0.7849 (+/- 0.0137)
+
+Average Confusion Matrix:
+[[1776   93]
+ [ 341  189]]
+
+Example Classification Report (Last Fold):
+              precision    recall  f1-score   support
+
+           0       0.85      0.94      0.89      1890
+           1       0.64      0.36      0.46       510
+
+    accuracy                           0.82      2400
+   macro avg       0.74      0.65      0.68      2400
+weighted avg       0.80      0.82      0.80      2400
+
+
+Random Forest Model Results:
+==================================================
+
+Test Accuracy: 0.8143
+
+Classification report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.95      0.89      4673
+           1       0.65      0.35      0.45      1327
+
+    accuracy                           0.81      6000
+   macro avg       0.74      0.65      0.67      6000
+weighted avg       0.80      0.81      0.79      6000
+
+
+Top 10 Most Important Features:
+ PAY_0: 0.1777
+ PAY_2: 0.0856
+ PAY_3: 0.0514
+ PAY_4: 0.0377
+ PAY_5: 0.0320
+ PAYMENT_TO_BILL_RATIO_1: 0.0298
+ CREDIT_UTILIZATION_RATIO_2: 0.0281
+ BILL_AMT1: 0.0272
+ PAY_AMT1: 0.0269
+ CREDIT_UTILIZATION_RATIO_5: 0.0264
+
+Model Performance:
+Accuracy: 0.8143
+AUC Score: 0.7736
+
+Trial 16 finished with value: 
+0.7834434401893742 and parameters: {'n_estimators': 954, 'max_depth': 12, 'min_samples_split': 7, 'min_samples_leaf': 6, 'max_features': 'log2'}. Best is trial 8 with value: 
+0.7841465550369775.
+Best trial: 8. Best value: 0.784147: 100%|█| 17/17 [11:01 

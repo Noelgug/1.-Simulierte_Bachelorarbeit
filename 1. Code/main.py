@@ -6,7 +6,7 @@ project_root = os.path.dirname(os.path.abspath(__file__))
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-from data_loader import (load_data, 
+from data_loader import (load_cleaned_data, load_data, 
                         load_test_data, 
                         load_train_data)
 from descriptive_analysis import run_descriptive_analysis
@@ -25,12 +25,14 @@ from outlier_analysis import run_outlier_analysis
 from visualization_runner import (create_all_visualizations, 
                                 create_model_visualizations,
                                 plot_roc_curve)
+from random_forest_model import train_random_forest_model
 
 
 def process_data(data):
     """Process data through the complete pipeline"""
     # Clean data
-    cleaned_data = clean_data(data)
+    clean_data(data) # Print removal stats
+    cleaned_data = load_cleaned_data()
     
     # Scale features
     scaled_data, scaling_info = scale_features(cleaned_data)
@@ -68,6 +70,7 @@ def main():
     CREATE_VISUALIZATIONS = True
     CLEAN_DATA = True
     XGBOOST_MODEL = True
+    RANDOM_FOREST_MODEL = False
     
     if RUN_DESCRIPTIVE:
         run_descriptive_analysis(data)
@@ -98,16 +101,37 @@ def main():
         y_test = test_data['default.payment.next.month']
         
         # Train and evaluate model
-        model_results = train_xgboost_model(train_data, test_data, use_optuna=False)
+        model_results = train_xgboost_model(train_data, test_data, use_optuna=True)
         
         # Create visualizations
-        create_model_visualizations(model_results)
-        plot_roc_curve(model_results, X_test, y_test)
+        create_model_visualizations(model_results, 'xgboost')
+        plot_roc_curve(model_results, X_test, y_test, 'xgboost', output_dir='Diagramms/XGBoost')
         
         print("\nModel Performance:")
         print(f"Accuracy: {model_results['accuracy']:.4f}")
         print(f"AUC Score: {model_results['auc_score']:.4f}")
         print("\nBest Parameters:", model_results['best_params'])
+
+    if RANDOM_FOREST_MODEL:
+        print("\nStarting Random Forest Model Training...")
+        
+        # Prepare test data for ROC curve
+        X_test = test_data.drop(['ID', 'default.payment.next.month'], axis=1)
+        y_test = test_data['default.payment.next.month']
+        
+        # Train and evaluate model
+        model_results = train_random_forest_model(train_data, test_data, use_optuna=False)
+        
+        # Create visualizations
+        create_model_visualizations(model_results, 'random_forest')
+        plot_roc_curve(model_results, X_test, y_test, 'random_forest', output_dir='Diagramms/RandomForest')
+        
+        print("\nModel Performance:")
+        print(f"Accuracy: {model_results['accuracy']:.4f}")
+        print(f"AUC Score: {model_results['auc_score']:.4f}")
+        print("\nBest Parameters:", model_results['best_params'])
+        print("\nClassification Report:")
+        print(model_results['classification_report'])
 
 if __name__ == "__main__":
     main()

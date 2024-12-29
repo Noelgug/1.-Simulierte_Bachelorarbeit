@@ -153,7 +153,6 @@ def analyze_outliers_z(data, column_prefix, num_columns=6):
             'threshold': threshold,
             'outliers': outliers[column].values.tolist(),
             'ids': outliers['ID'].values.tolist()}
-
     return outliers_info
 
 def analyze_pay_amt_outliers_z(data):

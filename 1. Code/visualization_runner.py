@@ -21,39 +21,48 @@ def create_all_visualizations(data):
     plot_bill_outliers_z(data)
     plot_payment_outliers_z(data)
 
-def plot_optuna_results(study, output_dir='Diagramms/Optuna'):
+def plot_optuna_results(study, model_name, output_dir='Diagramms/Optuna'):
     """Create and save Optuna visualization plots"""
     os.makedirs(output_dir, exist_ok=True)
     
     # Plot optimization history
     fig = optv.plot_optimization_history(study)
-    fig.write_image(os.path.join(output_dir, "optimization_history.png"))
+    fig.write_image(os.path.join(output_dir, f"optimization_history_{model_name}.png"))
     
     # Plot parameter importances
     fig = optv.plot_param_importances(study)
-    fig.write_image(os.path.join(output_dir, "param_importances.png"))
+    fig.write_image(os.path.join(output_dir, f"param_importances_{model_name}.png"))
     
     # Plot parallel coordinate
     fig = optv.plot_parallel_coordinate(study)
-    fig.write_image(os.path.join(output_dir, "parallel_coordinate.png"))
+    fig.write_image(os.path.join(output_dir, f"parallel_coordinate_{model_name}.png"))
     
     plt.close('all')
 
-def plot_feature_importance(model_results, output_dir='Diagramms/XGBoost'):
-    """Plot feature importance from XGBoost model"""
+def plot_feature_importance(feature_importance, model_name, output_dir='Diagramms/Model'):
+    """Plot feature importance from model results
+    
+    Args:
+        feature_importance: Either a dictionary of feature importances or the raw importance values
+    """
     os.makedirs(output_dir, exist_ok=True)
     
+    if isinstance(feature_importance, dict):
+        features = list(feature_importance.keys())
+        importance_values = list(feature_importance.values())
+    else:
+        features = [f"Feature {i}" for i in range(len(feature_importance))]
+        importance_values = feature_importance
+    
     plt.figure(figsize=(12, 6))
-    plt.bar(range(len(model_results['feature_importance'])), 
-            model_results['feature_importance'])
-    plt.xticks(range(len(model_results['feature_importance'])), 
-               model_results['feature_names'], rotation=45, ha='right')
+    plt.bar(range(len(importance_values)), importance_values)
+    plt.xticks(range(len(features)), features, rotation=45, ha='right')
     plt.title('Feature Importance')
     plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, 'feature_importance.png'))
+    plt.savefig(os.path.join(output_dir, f'feature_importance_{model_name}.png'))
     plt.close()
 
-def plot_roc_curve(model_results, X_test, y_test, output_dir='Diagramms/XGBoost'):
+def plot_roc_curve(model_results, X_test, y_test, model_name, output_dir):
     """Create and save ROC curve plot"""
     os.makedirs(output_dir, exist_ok=True)
     
@@ -77,14 +86,16 @@ def plot_roc_curve(model_results, X_test, y_test, output_dir='Diagramms/XGBoost'
     plt.legend(loc="lower right")
     plt.grid(True)
     
-    # Save plot
-    plt.savefig(os.path.join(output_dir, 'roc_curve.png'))
+    # Save plot with model name
+    plt.savefig(os.path.join(output_dir, f'roc_curve_{model_name}.png'))
     plt.close()
 
-def create_model_visualizations(model_results):
-    """Create all model-related visualizations"""
-    if model_results['study'] is not None:
-        plot_optuna_results(model_results['study'])
-    plot_feature_importance(model_results)
+def create_model_visualizations(model_results, model_name):
+    """Create visualizations for model results"""
+    # Plot feature importance
+    if 'feature_importance' in model_results:
+        plot_feature_importance(model_results['feature_importance'], model_name)
     
-    # Note: ROC curve needs to be called separately since it requires test data
+    # Plot optimization history if study exists
+    if 'study' in model_results and model_results['study'] is not None:
+        plot_optuna_results(model_results['study'], model_name)

@@ -115,6 +115,7 @@ def scale_features(data, output_path=SCALED_DATA_FILE):
     
     # Save scaled data
     scaled_data.to_csv(output_path, index=False)
+    print_scaling_info(scaling_info)
     
     return scaled_data, scaling_info
 

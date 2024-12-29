@@ -6,6 +6,7 @@ from sklearn.model_selection import KFold
 import optuna
 from sklearn.metrics import accuracy_score, roc_auc_score
 from cross_validation import perform_cross_validation, print_cv_results
+from adjust_class_weight import calculate_scale_pos_weight
 
 def manual_cross_validation(X, y, model, n_splits=5):
     """Perform manual cross-validation"""
@@ -45,6 +46,8 @@ def get_fixed_params():
 def train_model_with_fixed_params(X_train, y_train, X_test, y_test):
     """Train XGBoost model with fixed parameters"""
     params = get_fixed_params()
+    # Add scale_pos_weight to params
+    params['scale_pos_weight'] = calculate_scale_pos_weight(y_train)
     model = xgb.XGBClassifier(**params, random_state=42)
     
     # Perform cross-validation
@@ -70,8 +73,11 @@ def train_model_with_fixed_params(X_train, y_train, X_test, y_test):
         'cv_results': cv_results  # Add cross-validation results
     }
 
-def train_model_with_optuna(X_train, y_train, X_test, y_test, n_trials=100):
+def train_model_with_optuna(X_train, y_train, X_test, y_test, n_trials=300):
     """Train XGBoost model with Optuna optimization"""
+    # Calculate scale_pos_weight once
+    scale_pos_weight = calculate_scale_pos_weight(y_train)
+    
     def objective(trial):
         param = {
             'max_depth': trial.suggest_int('max_depth', 3, 9),
@@ -84,7 +90,8 @@ def train_model_with_optuna(X_train, y_train, X_test, y_test, n_trials=100):
             'reg_alpha': trial.suggest_float('reg_alpha', 0, 1.0),
             'reg_lambda': trial.suggest_float('reg_lambda', 0, 1.0),
             'objective': 'binary:logistic',
-            'eval_metric': 'auc'
+            'eval_metric': 'auc',
+            'scale_pos_weight': trial.suggest_float('scale_pos_weight', 1, 10)
         }
         
         model = xgb.XGBClassifier(**param, random_state=42)
@@ -120,7 +127,7 @@ def train_model_with_optuna(X_train, y_train, X_test, y_test, n_trials=100):
         'prediction_probabilities': y_pred_proba
     }
 
-def train_xgboost_model(train_data, test_data, use_optuna=False):
+def train_xgboost_model(train_data, test_data, use_optuna):
     """Train XGBoost model with either fixed parameters or Optuna optimization"""
     # Prepare data
     X_train = train_data.drop(['ID', 'default.payment.next.month'], axis=1)
