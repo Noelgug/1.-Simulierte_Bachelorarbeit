@@ -1,0 +1,68 @@
+Logistic Regression Results:
+==================================================
+
+Cross-Validation Results:
+------------------------------
+
+Mean Accuracy: 0.6858 (+/- 0.0123)
+Mean AUC: 0.7313 (+/- 0.0311)
+
+Test Set Results:
+------------------------------
+Test Accuracy: 0.6937
+Test AUC Score: 0.7474
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.88      0.70      0.78      4206
+           1       0.40      0.67      0.50      1247
+
+    accuracy                           0.69      5453
+   macro avg       0.64      0.69      0.64      5453
+weighted avg       0.77      0.69      0.72      5453
+
+
+Feature Coefficients:
+LIMIT_BAL: -0.4392
+AGE: 0.3457
+PAY_0: 0.4915
+PAY_2: 0.0971
+PAY_3: 0.0393
+PAY_4: 0.0715
+PAY_5: 0.0192
+PAY_6: 0.0005
+BILL_AMT1: -2.0881
+BILL_AMT2: 0.8395
+BILL_AMT3: 1.2476
+BILL_AMT4: 0.1228
+BILL_AMT5: -1.0167
+BILL_AMT6: 1.0160
+PAY_AMT1: -2.2696
+PAY_AMT2: -3.1524
+PAY_AMT3: -0.1115
+PAY_AMT4: 0.6366
+PAY_AMT5: -1.3603
+PAY_AMT6: -1.2998
+MALE: -0.7129
+FEMALE: -0.8248
+GRADUATE_SCHOOL: 0.6295
+UNIVERSITY: 0.5409
+HIGH_SCHOOL: 0.5183
+OTHERS_EDUCATION: -0.4195
+UNKNOWN_EDUCATION: -0.5327
+MARRIED: 1.9035
+SINGLE: 1.7209
+OTHER_RELATIONSHIP: 1.8418
+CREDIT_UTILIZATION_RATIO_1: -2.0402
+CREDIT_UTILIZATION_RATIO_2: 0.2028
+CREDIT_UTILIZATION_RATIO_3: -1.1259
+CREDIT_UTILIZATION_RATIO_4: 0.8015
+CREDIT_UTILIZATION_RATIO_5: -1.1038
+CREDIT_UTILIZATION_RATIO_6: 1.7289
+PAYMENT_TO_BILL_RATIO_1: 1.6286
+PAYMENT_TO_BILL_RATIO_2: 1.6454
+PAYMENT_TO_BILL_RATIO_3: -0.9409
+PAYMENT_TO_BILL_RATIO_4: -2.5457
+PAYMENT_TO_BILL_RATIO_5: 1.2406
+PAYMENT_TO_BILL_RATIO_6: 1.5054

@@ -26,6 +26,7 @@ from visualization_runner import (create_all_visualizations,
                                 create_model_visualizations,
                                 plot_roc_curve)
 from random_forest_model import train_random_forest_model
+from logistic_regression_model import train_logistic_regression_model
 
 
 def process_data(data):
@@ -70,7 +71,8 @@ def main():
     CREATE_VISUALIZATIONS = False
     CLEAN_DATA = False
     XGBOOST_MODEL = False
-    RANDOM_FOREST_MODEL = True
+    RANDOM_FOREST_MODEL = False
+    LOGISTIC_REGRESSION_MODEL = True
     
     if RUN_DESCRIPTIVE:
         run_descriptive_analysis(data)
@@ -125,6 +127,28 @@ def main():
         # Create visualizations
         create_model_visualizations(model_results, 'random_forest')
         plot_roc_curve(model_results, X_test, y_test, 'random_forest', output_dir='Diagramms/RandomForest')
+        
+        print("\nModel Performance:")
+        print(f"Accuracy: {model_results['accuracy']:.4f}")
+        print(f"AUC Score: {model_results['auc_score']:.4f}")
+        print("\nBest Parameters:", model_results['best_params'])
+        print("\nClassification Report:")
+        print(model_results['classification_report'])
+
+    if LOGISTIC_REGRESSION_MODEL:
+        print("\nStarting Logistic Regression Model Training...")
+        
+        # Prepare test data for ROC curve
+        X_test = test_data.drop(['ID', 'default.payment.next.month'], axis=1)
+        y_test = test_data['default.payment.next.month']
+        
+        # Train and evaluate model
+        model_results = train_logistic_regression_model(train_data, test_data, use_optuna=True)
+        
+        # Create visualizations
+        create_model_visualizations(model_results, 'logistic_regression')
+        plot_roc_curve(model_results, X_test, y_test, 'logistic_regression', 
+                      output_dir='Diagramms/LogisticRegression')
         
         print("\nModel Performance:")
         print(f"Accuracy: {model_results['accuracy']:.4f}")
