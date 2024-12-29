@@ -65,12 +65,12 @@ def main():
         return
     
     # Choose which analyses to run
-    RUN_DESCRIPTIVE = True
-    RUN_OUTLIER_ANALYSIS = True
-    CREATE_VISUALIZATIONS = True
-    CLEAN_DATA = True
-    XGBOOST_MODEL = True
-    RANDOM_FOREST_MODEL = False
+    RUN_DESCRIPTIVE = False
+    RUN_OUTLIER_ANALYSIS = False
+    CREATE_VISUALIZATIONS = False
+    CLEAN_DATA = False
+    XGBOOST_MODEL = False
+    RANDOM_FOREST_MODEL = True
     
     if RUN_DESCRIPTIVE:
         run_descriptive_analysis(data)
@@ -120,7 +120,7 @@ def main():
         y_test = test_data['default.payment.next.month']
         
         # Train and evaluate model
-        model_results = train_random_forest_model(train_data, test_data, use_optuna=False)
+        model_results = train_random_forest_model(train_data, test_data, use_optuna=True)
         
         # Create visualizations
         create_model_visualizations(model_results, 'random_forest')

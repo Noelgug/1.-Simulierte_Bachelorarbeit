@@ -2,79 +2,74 @@ Random Forest Cross-Validation Results:
 ==================================================
 
 Accuracy Scores:
-Fold 1: 0.8096
-Fold 2: 0.8137
-Fold 3: 0.8146
-Fold 4: 0.8229
-Fold 5: 0.8250
-Fold 6: 0.8158
-Fold 7: 0.8237
-Fold 8: 0.8221
-Fold 9: 0.8208
-Fold 10: 0.8200
-Mean Accuracy: 0.8188 (+/- 0.0097)
+Fold 1: 0.8249
+Fold 2: 0.7854
+Fold 3: 0.8047
+Fold 4: 0.7996
+Fold 5: 0.8161
+Fold 6: 0.8212
+Fold 7: 0.8088
+Fold 8: 0.8070
+Fold 9: 0.7894
+Fold 10: 0.8096
+Mean Accuracy: 0.8067 (+/- 0.0240)
 
 AUC Scores:
-Fold 1: 0.7847
-Fold 2: 0.7754
-Fold 3: 0.7719
-Fold 4: 0.7912
-Fold 5: 0.7938
-Fold 6: 0.7883
-Fold 7: 0.7797
-Fold 8: 0.7841
-Fold 9: 0.7909
-Fold 10: 0.7892
-Mean AUC: 0.7849 (+/- 0.0137)
+Fold 1: 0.7821
+Fold 2: 0.7490
+Fold 3: 0.7408
+Fold 4: 0.7641
+Fold 5: 0.7687
+Fold 6: 0.7767
+Fold 7: 0.7602
+Fold 8: 0.7687
+Fold 9: 0.7552
+Fold 10: 0.7603
+Mean AUC: 0.7626 (+/- 0.0235)
 
 Average Confusion Matrix:
-[[1776   93]
- [ 341  189]]
+[[1589   92]
+ [ 329  169]]
 
 Example Classification Report (Last Fold):
               precision    recall  f1-score   support
 
-           0       0.85      0.94      0.89      1890
-           1       0.64      0.36      0.46       510
+           0       0.83      0.95      0.89      1690
+           1       0.64      0.34      0.45       490
 
-    accuracy                           0.82      2400
-   macro avg       0.74      0.65      0.68      2400
-weighted avg       0.80      0.82      0.80      2400
+    accuracy                           0.81      2180
+   macro avg       0.74      0.64      0.67      2180
+weighted avg       0.79      0.81      0.79      2180
 
 
 Random Forest Model Results:
 ==================================================
 
-Test Accuracy: 0.8143
+Test Accuracy: 0.8043
 
 Classification report:
               precision    recall  f1-score   support
 
-           0       0.84      0.95      0.89      4673
-           1       0.65      0.35      0.45      1327
+           0       0.83      0.95      0.88      4206
+           1       0.64      0.33      0.44      1247
 
-    accuracy                           0.81      6000
-   macro avg       0.74      0.65      0.67      6000
-weighted avg       0.80      0.81      0.79      6000
+    accuracy                           0.80      5453
+   macro avg       0.73      0.64      0.66      5453
+weighted avg       0.78      0.80      0.78      5453
 
 
 Top 10 Most Important Features:
- PAY_0: 0.1777
- PAY_2: 0.0856
- PAY_3: 0.0514
- PAY_4: 0.0377
- PAY_5: 0.0320
- PAYMENT_TO_BILL_RATIO_1: 0.0298
- CREDIT_UTILIZATION_RATIO_2: 0.0281
- BILL_AMT1: 0.0272
- PAY_AMT1: 0.0269
- CREDIT_UTILIZATION_RATIO_5: 0.0264
+ PAY_0: 0.0799
+ AGE: 0.0421
+ BILL_AMT1: 0.0359
+ CREDIT_UTILIZATION_RATIO_1: 0.0357
+ PAY_2: 0.0351
+ PAYMENT_TO_BILL_RATIO_1: 0.0346
+ CREDIT_UTILIZATION_RATIO_2: 0.0330
+ CREDIT_UTILIZATION_RATIO_6: 0.0327
+ BILL_AMT2: 0.0319
+ CREDIT_UTILIZATION_RATIO_4: 0.0315
 
 Model Performance:
-Accuracy: 0.8143
-AUC Score: 0.7736
-
-Trial 16 finished with value: 
-0.7834434401893742 and parameters: {'n_estimators': 954, 'max_depth': 12, 'min_samples_split': 7, 'min_samples_leaf': 6, 'max_features': 'log2'}. Best is trial 8 with value: 
-0.7841465550369775.
-Best trial: 8. Best value: 0.784147: 100%|█| 17/17 [11:01 
+Accuracy: 0.8043
+AUC Score: 0.7655

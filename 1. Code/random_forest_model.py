@@ -117,7 +117,7 @@ def save_model_results(model_results, output_dir='Results/RandomForest'):
         f.write(f"Accuracy: {model_results['accuracy']:.4f}\n")
         f.write(f"AUC Score: {model_results['auc_score']:.4f}\n")
 
-def train_random_forest_model(train_data, test_data, use_optuna=True):
+def train_random_forest_model(train_data, test_data, use_optuna):
     """Train and evaluate Random Forest model with optional Optuna tuning"""
     # Prepare data
     X_train = train_data.drop(['ID', 'default.payment.next.month'], axis=1)
